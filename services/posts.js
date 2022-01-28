@@ -124,7 +124,7 @@ exports.update = async (params) => { //Update the stock value by productID
     var items = {
         TableName:table,
         Key:{
-            productId : params.productId,
+            stock: params.stock,
         },
     UpdateExpression: "set stock = :stock", //stock value parameter
     ExpressionAttributeValues:{
