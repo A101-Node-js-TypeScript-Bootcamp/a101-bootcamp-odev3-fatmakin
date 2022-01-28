@@ -89,7 +89,7 @@ let docClient = new AWS.DynamoDB.DocumentClient();
 -SQL databases are vertically scalable, while NoSQL databases are horizontally scalable.
 -SQL databases are table-based, while NoSQL databases are document, key-value, graph, or wide-column stores.
 -SQL databases are better for multi-row transactions, while NoSQL is better for unstructured data like documents or JSON.
-                        | Sql                                                 | NoSQL                                                                                                                           |
+                        | Sql                                                 | NoSQL                                                                                                                     |-----------------------------------------------------|--------------------------------------------------------------------------------------------------
 |Data Storage Model     | Tables with fixed rows and columns                  | Document: JSON documents, Key-value: key-value pairs, Wide-column: tables with rows and dynamic columns, Graph: nodes and edges |
 |Examples               | Oracle, MySQL, Microsoft SQL Server, and PostgreSQL | MongoDB and CouchDB, Dynamodb                                                                                                   |
 |Schemas                | Rigid                                               | Flexible                                                                                                                        |
