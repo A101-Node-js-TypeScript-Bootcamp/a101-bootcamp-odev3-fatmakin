@@ -2,16 +2,16 @@ const AWS = require('aws-sdk')
 const uuidv4 = require('uuid')
 AWS.config.update({
     region: "us-east-1",
-    accessKeyId: "AKIAUXPXJZK2YVNNPDJQ",
-    secretAccessKey: "J0m3L4oPGvFIo2j3hwLW7Etkp25yJNHDoJz5ICQN",
+    accessKeyId: "your access key",
+    secretAccessKey: "your secret access key",
     endpoint: "https://dynamodb.us-east-1.amazonaws.com"
 });
 let docClient = new AWS.DynamoDB.DocumentClient();
-var table = "Products";
+var table = "Products"; // table name
 exports.add = async (params)=>{
-    const items = {
+    const items = { 
         TableName : table,
-        Item: {
+        Item: { // get the data values ​​to be added with the parameter
             productId: uuidv4(),
             stock:params.stock,
             productName:params.productName,
@@ -38,7 +38,7 @@ exports.add = async (params)=>{
     }
 }
 
-exports.fetchAll = async () => {
+exports.fetchAll = async () => { // all data list
     const  items = {
         TableName:table
     };
@@ -56,10 +56,10 @@ exports.fetchAll = async () => {
         }
     }
 }
-exports.fetchSingle = async (params) => { 
+exports.fetchSingle = async (params) => { //  data list by productıd
     var items = {
         TableName: table,
-        Key:{
+        Key:{ // get the productid value with the parameter
             productId : params.productId
         }
     };
@@ -76,10 +76,10 @@ exports.fetchSingle = async (params) => {
         }
     }
 }
-exports.fetchisDiscount = async (params) => { 
+exports.fetchisDiscount = async (params) => { // data list isdiscount
     var items = {
         TableName: table,
-        Key:{
+        Key:{ //get the isdiscount value with the parameter
             isDiscount : params.isDiscount
         }
     };
@@ -96,7 +96,7 @@ exports.fetchisDiscount = async (params) => {
         }
     }
 }
-exports.delete = async (params) => {
+exports.delete = async (params) => { // delete  by productıd but If there is an isdiscount value, it will not delete it
     var items = {
         TableName:table,
         Key:{
@@ -120,15 +120,15 @@ exports.delete = async (params) => {
         }
     }
 }
-exports.update = async (params) => {
+exports.update = async (params) => { //Update the stock value by productID
     var items = {
         TableName:table,
         Key:{
             productId : params.productId,
         },
-    UpdateExpression: "set stock = :stock",
+    UpdateExpression: "set stock = :stock", //stock value parameter
     ExpressionAttributeValues:{
-        ":categoryName":params.categoryName,
+        ":productId":params.productId,
     },
     ReturnValues:"UPDATED_NEW"
    };
