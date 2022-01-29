@@ -120,15 +120,15 @@ exports.delete = async (params) => { // delete  by productıd but If there is an
         }
     }
 }
-exports.update = async (params) => { //Update the stock value by productID
+exports.update = async (params,params2) => { //Update the stock value by productID
     var items = {
         TableName:table,
         Key:{
-            stock: params.stock,
+            productId: params.productId,
         },
     UpdateExpression: "set stock = :stock", //stock value parameter
     ExpressionAttributeValues:{
-        ":productId":params.productId,
+        ":stock":params2.stock,
     },
     ReturnValues:"UPDATED_NEW"
    };
