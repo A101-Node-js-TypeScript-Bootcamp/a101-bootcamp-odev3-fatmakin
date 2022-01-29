@@ -2,6 +2,10 @@ const AWS = require('aws-sdk')
 const uuidv4 = require('uuid')
 const postsService = require('../services/posts')
 
+const AWS = require('aws-sdk') // aws sdk
+const uuidv4 = require('uuid') // id value encryption
+const postsService = require('../services/posts')
+
 // database connection
 AWS.config.update({
     region: "us-east-1",
@@ -14,17 +18,32 @@ var table = "Products"; // table name
 
 exports.add = async (req,res) => { // database data insert
     const response = await postsService.add(req.body); //
+    console.log(response);
     res.send({status:true});
 }
-exports.fetchAll = async (req,res) => {
+exports.fetchAll = async (req,res) => { // database data select 
     const response = await categoryService.fetchAll();
-    res.send(response); 
+    console.log(response);
+    res.send({status:true}); 
 }
-exports.fetchSingle = async (req,res) => {
+exports.fetchSingle = async (req,res) => {// filter by productId
     const response = await categoryService.fetchSingle(req.params); 
-    res.send(response);
+    console.log(response);
+    res.send({status:true});
 }
-exports.fetchisDiscount = async (req,res) => {
+exports.fetchisDiscount = async (req,res) => { // filter by discount
     const response = await categoryService.fetchisDiscount(req.params); 
-    res.send(response);
+    console.log(response);
+    res.send({status:true});
+}
+exports.update = async (req,res) => { // update function to change stock value by productId
+    const response = await postsService.update();
+    console.log(response);
+    res.send({status:true});
+}
+
+exports.delete = async (req,res) => { // delete  by productıd but If there is an isdiscount value, it will not delete it
+    const response = await postsService.delete();
+    console.log(response);
+    res.send({status:true});
 }
